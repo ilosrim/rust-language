@@ -1,3 +1,4 @@
+use std::io;
 use std::any::type_name;
 // use std::fmt::Display;
 
@@ -5,7 +6,7 @@ fn type_of<T>(_: T) -> &'static str {
     type_name::<T>()
 }
 
-#![allow(unused)]
+#[allow(unused)]
 fn main() {
     // Data Types
     // Scalar Types:
@@ -60,5 +61,41 @@ fn main() {
     let _one = k.2;
 
     // Arrays
-    let arr: [i32, 5] = [1,2,3,4,5];
+    // let arr: [i32, 5] = [1,2,3,4,5];
+    // let p = [3;4]; // 3 boshlang'ich qiymat, 4 array uzunligi
+
+    // let first = arr[0];
+    // let second = arr[1];
+
+    let a = [1, 2, 3, 4, 5];
+    
+    println!("Please enter an array index.");
+
+    let mut index = String::new();
+
+    io::stdin()
+        .read_line(&mut index)
+        .expect("Failed to read line!");
+    
+    let index: usize = index
+        .trim()
+        .parse()
+        .expect("Index entered was a number");
+
+    let element = a[index];
+
+    println!(
+        "The value of the element at index {} is: {}",
+        index, element
+    );
+
+    for num in 1..20{
+        // FizzBazz Game
+        match (num%3, num%5){
+            (0,0) => println!("fizzbazz"),
+            (0,_) => println!("fizz"),
+            (_,0) => println!("bazz"),
+                _ => println!("{}", num)
+        }
+    }
 }
